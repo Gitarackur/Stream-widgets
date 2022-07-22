@@ -25,7 +25,7 @@ export default {
       src: '~/plugins/api.js',
       mode: 'client',
     },
-    { src: '~/plugins/vue-apexchart.js', ssr: false },
+    // { src: '~/plugins/vue-apexchart.js', ssr: false },
     // { src: '~/plugins/chart.js', mode: 'client' },
   ],
 

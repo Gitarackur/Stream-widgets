@@ -1,5 +1,6 @@
 <template>
-  <client-only>
+  <h1>charts</h1>
+  <!-- <client-only>
     <div>
       <VueApexCharts
         width="700"
@@ -8,21 +9,21 @@
         :series="series"
       ></VueApexCharts>
     </div>
-  </client-only>
+  </client-only> -->
 </template>
 
 <script>
-import VueApexCharts from 'vue-apexcharts'
+// import VueApexCharts from 'vue-apexcharts'
 export default {
   name: 'VChart',
   components: {
-    VueApexCharts,
+    // VueApexCharts,
   },
   data() {
     return {
       chartOptions: {
         chart: {
-          // height: 350,
+          height: 350,
           type: 'line',
           stacked: false,
         },
@@ -30,7 +31,6 @@ export default {
           curve: 'straight',
         },
         xaxis: {
-          // categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
           categories: [
             'Jan',
             'Feb',

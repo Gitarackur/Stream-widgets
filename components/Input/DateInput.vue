@@ -2,7 +2,7 @@
   <div
     class="dateInput text-white"
     :class="[showPicker && 'show']"
-    @click="showPicker = !showPicker"
+    @click="showPicker = true"
   >
     <!-- @blur="closePicker" -->
     <input
