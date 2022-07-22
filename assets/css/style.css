@@ -1,0 +1,243 @@
+@font-face {
+  font-family: 'Avenir-black';
+  src: url('../fonts/Avenir-black.otf');
+}
+@font-face {
+  font-family: 'Avenir-heavy';
+  src: url('../fonts/Avenir-heavy.ttf');
+}
+@font-face {
+  font-family: 'Avenir-medium';
+  src: url('../fonts/Avenir-medium.ttf');
+}
+@font-face {
+  font-family: 'Avenir-next-bold';
+  src: url('../fonts/Avenir-next-bold.otf');
+}
+@font-face {
+  font-family: 'Avenir-next-demibold';
+  src: url('../fonts/Avenir-next-demibold.ttf');
+}
+@font-face {
+  font-family: 'Avenir-next-regular';
+  src: url('../fonts/Avenir-next-regular.otf');
+}
+@font-face {
+  font-family: 'Avenir-next-medium';
+  src: url('../fonts/Avenir-next-medium.ttf');
+}
+@font-face {
+  font-family: 'halyard-display-bold';
+  src: url('../fonts/halyard-display-bold.woff2');
+}
+@font-face {
+  font-family: 'halyard-display-medium';
+  src: url('../fonts/halyard-display-medium.woff2');
+}
+@font-face {
+  font-family: 'halyard-display-semibold';
+  src: url('../fonts/halyard-display-semibold.woff2');
+}
+@font-face {
+  font-family: 'DomaineDisp-Regular';
+  src: url('../fonts/DomaineDisp-Regular.otf');
+}
+@font-face {
+  font-family: 'DomaineDisp-Semibold';
+  src: url('../fonts/DomaineDisp-Semibold.otf');
+}
+
+@font-face {
+  font-family: 'DomaineDisp-Semibold';
+  src: url('../fonts/DomaineDisp-Semibold.otf');
+}
+@font-face {
+  font-family: 'DomaineDisp-Semibold';
+  src: url('../fonts/DomaineDisp-Semibold.otf');
+}
+@font-face {
+  font-family: 'AvertaStd-ExtraBold';
+  src: url('../fonts/AvertaStd-ExtraBold.ttf');
+}
+@font-face {
+  font-family: 'AvertaStd-Black';
+  src: url('../fonts/AvertaStd-Black.ttf');
+}
+@font-face {
+  font-family: 'AvertaStd-Regular';
+  src: url('../fonts/AvertaStd-Regular.ttf');
+}
+@font-face {
+  font-family: 'AvertaStd-Light';
+  src: url('../fonts/AvertaStd-Light.ttf');
+}
+@font-face {
+  font-family: 'AvertaStd-Thin';
+  src: url('../fonts/AvertaStd-Thin.ttf');
+}
+@font-face {
+  font-family: 'AvertaStd-Extrathin';
+  src: url('../fonts/AvertaStd-Extrathin.ttf');
+}
+@font-face {
+  font-family: 'AvertaStd-Bold';
+  src: url('../fonts/AvertaStd-Bold.ttf');
+}
+
+* {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  /* transition: all .2s; */
+}
+
+body {
+  box-sizing: border-box;
+  background: #fff;
+  font-family: 'AvertaStd-Regular', sans-serif;
+  font-weight: 500;
+  color: #515151;
+  font-size: 16px;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.bigp-links {
+  font-size: 16px;
+  font-family: 'AvertaStd-Regular', sans-serif;
+  font-weight: 500;
+}
+
+body::-webkit-scrollbar {
+  /* width: 1em; */
+}
+body::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
+}
+body::-webkit-scrollbar-thumb {
+  /* background-color: #CA9140;
+  border-radius: 10px; */
+}
+
+h1 {
+  font-size: 48px;
+  line-height: 1.3;
+  font-family: 'AvertaStd-Bold', sans-serif;
+}
+h2 {
+  font-size: 40px;
+  font-family: 'AvertaStd-Bold', sans-serif;
+}
+h3 {
+  font-size: 32px;
+  font-family: 'AvertaStd-Bold', sans-serif;
+}
+h4 {
+  font-size: 28px;
+  font-family: 'AvertaStd-Bold', sans-serif;
+  font-weight: 400;
+}
+h5 {
+  font-size: 24px;
+  font-family: 'AvertaStd-Bold', sans-serif;
+  font-weight: 500;
+}
+h6 {
+  font-size: 20px;
+  font-family: 'AvertaStd-Bold', sans-serif;
+  font-weight: 500;
+}
+.h31px {
+  font-size: 32px;
+  font-family: 'AvertaStd-Bold', sans-serif;
+  font-weight: 500;
+}
+.bigP {
+  font-size: 21px;
+}
+.smallP {
+  font-size: 13px;
+}
+.smallP12px {
+  font-size: 12px;
+}
+
+/* header classes*/
+.h5 {
+  font-size: 20px;
+  font-family: 'AvertaStd-Regular', sans-serif;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 36px;
+    line-height: 40px;
+  }
+  h2 {
+    /* font-size: 34px; */
+    font-size: 28px;
+  }
+  h3 {
+    font-size: 28px;
+  }
+  h4 {
+    font-size: 22px;
+  }
+  h5 {
+    font-size: 20px;
+  }
+  h6 {
+    font-size: 20px;
+  }
+  .bigP {
+    font-size: 21px;
+  }
+  .bigp-links {
+    font-size: 12px;
+  }
+}
+
+/*800px*/
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  /* @media (max-width: 992px) { */
+  h1 {
+    font-size: 32px;
+    line-height: 58px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  /* } */
+}
+
+/*colors*/
+.c-black {
+  color: #000;
+}
+.c-262626 {
+  color: #262626;
+}
+.c-white {
+  color: #fff;
+}
+.c-4C9077 {
+  color: #4c9077;
+}
+.c-CECECE {
+  color: #cecece;
+}
+
+/*backgrounds*/
+.bg-transparent {
+  background: transparent;
+}
+.bgfff {
+  background: #fff;
+}
+.bg000 {
+  background: #000;
+}
+.bg262627 {
+  background: #262627;
+}
