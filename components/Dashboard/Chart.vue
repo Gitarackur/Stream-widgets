@@ -1,9 +1,11 @@
 <template>
   <div>
     <h1>charts</h1>
-    <ClientOnly>
-      <ApexChart type="line" :options="chartOptions" :series="series" />
-    </ClientOnly>
+    <div class="">
+      <ClientOnly>
+        <ApexChart type="area" :options="chartOptions" :series="series" />
+      </ClientOnly>
+    </div>
   </div>
 </template>
 
@@ -34,6 +36,30 @@ export default {
         },
         xaxis: {
           categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+        },
+        fill: {
+          colors: [
+            'rgba(101, 196, 157, 0.1, 0.2512)',
+            'rgba(101, 196, 157, 0, 0.968)',
+          ],
+          type: 'gradient',
+          gradient: {
+            shadeIntensity: 1,
+            opacityFrom: 0.2513,
+            opacityTo: 0.968,
+            stops: [0, 96.18, 25.13, 0],
+          },
+        },
+        stroke: {
+          show: true,
+          curve: 'straight',
+          // lineCap: 'butt',
+          colors: ['#447E6B', '#65C49D'],
+          width: 3,
+          dashArray: 0,
+        },
+        dataLabels: {
+          enabled: false,
         },
       },
       series: [
