@@ -42,7 +42,7 @@
 
           <div class="md:w-6/12 lg:p-2">
             <Card class="h-full w-full">
-              <!-- <Chart /> -->
+              <Chart />
 
               <div class="flex justify-between items-center">
                 <div
@@ -88,7 +88,7 @@ import AvgReturn from '../components/Dashboard/AvgReturn.vue'
 import ProfitFactor from '../components/Dashboard/ProfitFactor.vue'
 // import DatePicker1 from '../components/DatePicker.vue'
 import DateInput from '../components/Input/DateInput.vue'
-// import Chart from '../components/Dashboard/Chart.vue'
+import Chart from '../components/Dashboard/Chart.vue'
 
 function isValidDate(dateObject) {
   return new Date(dateObject).toString() !== 'Invalid Date'
@@ -105,7 +105,7 @@ export default {
     ProfitFactor,
     // DatePicker1,
     DateInput,
-    // Chart,
+    Chart,
   },
   data() {
     return { date: new Date('01-01-2000'), showPicker: false }
