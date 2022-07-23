@@ -10,11 +10,43 @@
 </template>
 
 <script>
+const convertArrayTimeStampToDate = (timestampArray)=>{
+  return timestampArray && timestampArray.map((curr)=> {
+    const newArr = []
+    curr = new Date(curr).toLocaleDateString();
+    newArr.push(curr)
+    return newArr;
+  })
+}
+
 export default {
   name: 'VChart',
-  components: {},
+  props: {
+    timeStamps : {
+      type: Array,
+      default:()=> [],
+    },
+    portfolioValue : {
+      type: Array,
+      default:()=> [],
+    },
+  },
+  mounted(){
+    if(process.browser){
+      console.log(this.timeStamps, this.portfolioValue);
+      this.chartOptions.xaxis.categories = convertArrayTimeStampToDate(this.timeStamps)
+      this.series[0].data = this.portfolioValue
+    }
+  },
   data() {
     return {
+      series: [
+        {
+          name: 'series-1',
+          data: [],
+          colors: ['#65C49D', '#65C49D'],
+        },
+      ],
       chartOptions: {
         chart: {
           id: 'tradestream graph',
@@ -35,7 +67,7 @@ export default {
           },
         },
         xaxis: {
-          // categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+          categories: [],
           axisBorder: {
             show: false,
           },
@@ -146,13 +178,6 @@ export default {
           enabled: false,
         },
       },
-      series: [
-        {
-          name: 'series-1',
-          data: [30, 40, 35, 50, 49, 60, 70, 91],
-          colors: ['#65C49D', '#65C49D'],
-        },
-      ],
     }
   },
 }

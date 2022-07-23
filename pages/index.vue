@@ -5,7 +5,7 @@
         <div>Sidebar</div>
       </div>
 
-      <div class="md:w-11/12 px-6">
+      <div class="md:w-11/12 md:px-6">
         <div class="flex justify-between items-center my-4">
           <div class="">
             <h1 class="c-white">Dashboard</h1>
@@ -42,7 +42,7 @@
 
           <div class="md:w-6/12 lg:p-2">
             <Card class="h-full w-full">
-              <Widget />
+              <Widget :time-stamps="timestamps" :portfolio-value="portfolioValue"/>
             </Card>
           </div>
 
@@ -63,7 +63,7 @@ import Portfolio from '~/components/Dashboard/Portfolio.vue'
 import TotalReturn from '~/components/Dashboard/TotalReturn.vue'
 import AvgReturn from '~/components/Dashboard/AvgReturn.vue'
 import ProfitFactor from '~/components/Dashboard/ProfitFactor.vue'
-import Widget from '../components/Widget/index.vue'
+import Widget from '~/components/Widget/index.vue'
 
 export default {
   name: 'IndexPage',
@@ -77,8 +77,8 @@ export default {
 },
   data() {
     return { 
-      timestamps: [1568666854141, 1568595225048, 1568594645595],
-      portfolioValue: [100, 150, 200],
+      timestamps: [1568666854141, 1568595225048, 1568594645595, 1568594646000, 1600000000000],
+      portfolioValue: [100, 150, 200, 250, 300],
     }
   },
   methods: {},

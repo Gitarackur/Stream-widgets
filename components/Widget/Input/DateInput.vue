@@ -7,13 +7,12 @@
   >
     <input
       :value="value"
-      class="px-5 py-1.5 bg262627 box-border w-full inline-block"
+      class="px-5 py-1.5 bg262627 box-border w-full inline-block relative"
       type="text"
       @input="onInput"
     />
-    <div class="calendar">
-      <DatePicker1 v-model="mdate" @selected="onSelected" />
-    </div>
+
+    <DatePicker1 class="calendar" v-model="mdate" @selected="onSelected" />
   </div>
 </template>
 
@@ -93,21 +92,18 @@ export default {
 .dateInput {
   position: relative;
   display: inline-block;
-  /* box-shadow: none;
-  outline: none; */
 }
 
 .dateInput .calendar {
+  position: absolute;
+  z-index: 1;
   visibility: hidden;
-  /* width: 200px; */
-  /* background: #262627; */
   color: #fff;
   text-align: center;
   border-radius: 6px;
   padding: 5px;
-  position: absolute;
-  z-index: 1;
-  bottom: 100%;
+ 
+  bottom: 140%;
   left: 50%;
   margin-left: -100px;
   opacity: 0;
@@ -117,5 +113,54 @@ export default {
 .dateInput.show .calendar {
   visibility: visible;
   opacity: 1;
+}
+
+.dateInput:focus {
+  border: none;
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .dateInput .calendar {
+    visibility: hidden;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+}
+
+@media (min-width: 768px) {
+  .lead {
+    font-size: 21px;
+  }
+}
+
+@media (min-width: 992px) {
+  .lead {
+    font-size: 21px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .dateInput .calendar {
+    visibility: hidden;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
 }
 </style>

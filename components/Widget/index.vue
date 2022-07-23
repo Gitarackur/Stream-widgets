@@ -1,8 +1,8 @@
 <template>
   <div class="">
-    <Chart />
+    <Chart :time-stamps="timeStamps" :portfolio-value="portfolioValue"/>
 
-    <div class="flex justify-between items-center md:-mx-2">
+    <div class="md:flex md:justify-between md:items-center md:-mx-2">
       <div
         class="flex flex-row gap-2 justify-between items-center bg-sidebar p-1 md:w-8/12 md:px-2"
       >
@@ -18,7 +18,7 @@
       </div>
 
       <div class="md:w-5/12 md:px-2">
-        <p class="text-white">
+        <p class="text-white mt-10 md:mt-0">
           Your did 8% less trades compared to 80 trades past month
         </p>
       </div>
@@ -35,7 +35,17 @@ export default {
   components: {
     DateInput,
     Chart
-},
+  },
+  props: {
+    timeStamps : {
+      type: Array,
+      default:()=> [],
+    },
+    portfolioValue : {
+      type: Array,
+      default:()=> [],
+    },
+  },
   data() {
     return { date: new Date('01-01-2000'), test1: new Date('') }
   },

@@ -412,7 +412,6 @@ export default {
 */
 
 .bgblack {
-  /* background: #262627; */
   background: #1c1c1d;
 }
 .border-b {
@@ -427,7 +426,6 @@ export default {
   border: 1px solid #3d3d3e;
   box-shadow: 0px 0px 48px rgba(10, 10, 11, 0.3);
   border-radius: 6px;
-  /* z-index: 1; */
 }
 .weekdays {
   color: #676768;
