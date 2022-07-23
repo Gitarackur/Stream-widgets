@@ -45,9 +45,9 @@ export default {
           type: 'gradient',
           gradient: {
             shadeIntensity: 1,
-            opacityFrom: 0.2513,
-            opacityTo: 0.968,
-            stops: [0, 96.18, 25.13, 0],
+            opacityFrom: 0.968,
+            opacityTo: 0.2513,
+            stops: [100, 96.18, 25.13, 0],
           },
         },
         stroke: {
