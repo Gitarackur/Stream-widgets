@@ -70,7 +70,7 @@
 
           <div class="md:w-3/12 lg:p-2">
             <Card class="h-full w-full">
-              <h1></h1>
+              <!-- <h1></h1> -->
             </Card>
           </div>
         </div>
@@ -89,6 +89,7 @@ import ProfitFactor from '../components/Dashboard/ProfitFactor.vue'
 // import DatePicker1 from '../components/DatePicker.vue'
 import DateInput from '../components/Input/DateInput.vue'
 // import Chart from '../components/Dashboard/Chart.vue'
+
 function isValidDate(dateObject) {
   return new Date(dateObject).toString() !== 'Invalid Date'
 }
