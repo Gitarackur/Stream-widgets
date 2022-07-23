@@ -76,13 +76,12 @@ export default {
     Widget
 },
   data() {
-    return { date: new Date('01-01-2000'), test1: new Date('') }
+    return { 
+      timestamps: [1568666854141, 1568595225048, 1568594645595],
+      portfolioValue: [100, 150, 200],
+    }
   },
-  methods: {
-    closePicker() {
-      // setTimeout(() => (this.showPicker = false), 500)
-    },
-  },
+  methods: {},
 }
 </script>
 <style scoped>

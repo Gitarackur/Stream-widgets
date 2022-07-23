@@ -35,7 +35,7 @@ export default {
           },
         },
         xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+          // categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
           axisBorder: {
             show: false,
           },
@@ -43,9 +43,9 @@ export default {
             show: false,
           },
           labels: {
-            show: false,
+            show: true,
             style: {
-              colors: '#fff',
+              colors: '#676768',
               fontSize: '8px',
               cssClass: 'apexcharts-xaxis-label',
             },
@@ -53,11 +53,11 @@ export default {
         },
         yaxis: {
           labels: {
-            show: false,
+            show: true,
             minWidth: 0,
             maxWidth: 160,
             style: {
-              color: '#fff',
+              color: '#676768',
               fontSize: '8px',
               cssClass: 'apexcharts-yaxis-label',
             },
