@@ -2,6 +2,8 @@
   <div class="w-max calendar">
     <div class="flex flex-row">
       <div class="w-7/12 p-4">
+
+        
         <!-- Head Controls Component -->
         <div class="flex flex-row justify-between mb-5" data-name="head">
           <div
@@ -75,9 +77,11 @@
             </i>
           </div>
         </div>
+
+
+
         <!-- Calender Component -->
         <div v-show="showCalender" class="" data-name="calender">
-          <!-- <CalenderTable v-model="selectedDate"/> -->
           <div>
             <div class="flex flex-row" data-name="weekdays">
               <div
@@ -133,6 +137,8 @@
             <div class="px-1">
               <input
                 v-model="selectedTime"
+                @blur="handleEmitting"
+                @keydown.enter="handleEmitting"
                 type="text"
                 placeholder="00:00"
                 class="block pl-8 bg-transparent w-full appearance-none border-none box-border"
@@ -194,13 +200,13 @@
 <script>
 
 function to12hrs(dt) {
-  var hours = dt.getHours() ; // gives the value in 24 hours format
-  var AmOrPm = hours >= 12 ? 1 : 0;
-  hours = String(((hours % 12) || 12)).padStart(2, '0');
-  var minutes = String(dt.getMinutes()).padStart(2, '0') ;
-  var finalTime = "Time  - " + hours + ":" + minutes + " " + AmOrPm; 
-  console.log(finalTime)
-  return [hours, minutes, AmOrPm]
+  let hours = dt.getHours(); // gives the value in 24 hours format
+  const AmOrPm = hours >= 12 ? 1 : 0;
+  const timeOffset =  dt.getTimezoneOffset();
+  hours = String(((hours % 12) || 12) + (0)).padStart(2, '0');
+  const minutes = String(dt.getMinutes()).padStart(2, '0') ;
+  
+  return [hours, minutes, AmOrPm, timeOffset]
 }
 const MONTH_MAP = Object.freeze([
   'January',
@@ -231,9 +237,11 @@ export default {
     selectedMM: undefined,
     selectedYY: undefined,
     totalDays: 0,
+    timeZoneOffset: 0,
     today: new Date(),
     firstWeekday: 0,
     MONTH_MAP,
+    emitSelected: false
   }),
   computed: {
     days() {
@@ -273,7 +281,7 @@ export default {
       },
       set(v) {
         const [hrs, mint] = v.split(':')
-        this.selectedMin = +mint > 60 ? 60 : mint
+        this.selectedMin = +mint >= 60 ? 59 : mint
         this.selectedHrs = +hrs > 12 ? 12 : hrs
       },
     },
@@ -283,20 +291,26 @@ export default {
     selectedDate(old, $new) {
       if (old !== $new) {
         this.$emit('input', this.selectedDate)
-        this.$emit('update:modelValue', this.selectedDate)
+        this.$emit('selected', this.selectedDate)
       }
     },
 
     selectedTime() {
-      this.selectedDate.setUTCHours(this.timeMeridian ? this.selectedHrs : this.selectedHrs + 12);
+      const x = +(!this.timeMeridian ? this.selectedHrs : Number(this.selectedHrs) + 12) + Math.floor(this.timeZoneOffset/60);
+      console.log(x, this.timeMeridian);
+      this.selectedDate.setUTCHours(x);
       this.selectedDate.setMinutes(this.selectedMin);
+      console.log('tie')
       this.$emit('input', this.selectedDate);
+      // this.
     }
   },
   mounted() {
     // TODO get selected date from v-model
     const date = new Date(this.value)
-    if (date) [this.selectedHrs, this.selectedMin, this.timeMeridian] = to12hrs(date)
+    if (date) {
+      [this.selectedHrs, this.selectedMin, this.timeMeridian, this.timeZoneOffset] = to12hrs(date);
+    }
     // this.selectedMin = date.getMinutes()
     // this.selectedHrs = date.getHours()
     this.setCurrentDate(date)
@@ -305,6 +319,12 @@ export default {
     
   },
   methods: {
+    handleEmitting() {
+      this.$emit('input', this.selectedDate)
+      if(this.emitSelected){
+        this.$emit('selected', this.selectedDate)
+      }
+    },
     setCurrentDate(date) {
       this.selectedDate = date
       this.selectedDD = date.getDate()
@@ -313,11 +333,9 @@ export default {
       this.firstWeekday =
         this.getFirstDayOfMonth(date.getFullYear(), date.getMonth()) - 1
       this.totalDays = this.getDaysInMonth(date.getFullYear(), date.getMonth())
-      this.$emit('input', this.selectedDate)
-      // this.$emit('update:modelValue', this.selectedDate)
+      this.handleEmitting();
     },
     range(start, stop, skip = 1) {
-      // console.log(start, stop)
       const arrayLength = Math.floor(stop / skip) - start
       const array =
         arrayLength > 0
@@ -370,10 +388,12 @@ export default {
         }
       }
 
+      this.emitSelected = false;
       this.setCurrentDate($date)
     },
     changeDD(dd) {
       this.selectedDate.setDate(dd)
+      this.emitSelected = true
       this.setCurrentDate(this.selectedDate)
     },
     changeYear(yy) {

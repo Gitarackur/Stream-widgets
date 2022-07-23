@@ -42,29 +42,7 @@
 
           <div class="md:w-6/12 lg:p-2">
             <Card class="h-full w-full">
-              <Chart />
-
-              <div class="flex justify-between items-center">
-                <div
-                  class="flex flex-row gap-2 justify-between items-center bg-sidebar p-1 w-full relative"
-                >
-                  <div class="md:w-full relative">
-                    <DateInput v-model="test1" class="w-full" />
-                  </div>
-                  <div>-</div>
-                  <div class="md:w-full relative">
-                    <DateInput v-model="date" />
-                  </div>
-                </div>
-
-                <!-- <div class="w-6/12">
-                  <p class="text-white">
-                    Your did 8% less trades compared to 80 trades past month
-                  </p>
-                </div> -->
-              </div>
-
-              <!-- @blur="closePicker" -->
+              <Widget />
             </Card>
           </div>
 
@@ -80,35 +58,29 @@
 </template>
 
 <script>
-import Card from '../components/Card.vue'
-// import HoverableItems from '../components/HoverableItems.vue'
-import Portfolio from '../components/Dashboard/Portfolio.vue'
-import TotalReturn from '../components/Dashboard/TotalReturn.vue'
-import AvgReturn from '../components/Dashboard/AvgReturn.vue'
-import ProfitFactor from '../components/Dashboard/ProfitFactor.vue'
-// import DatePicker1 from '../components/DatePicker.vue'
-import DateInput from '../components/Input/DateInput.vue'
-import Chart from '../components/Dashboard/Chart.vue'
+import Card from '~/components/Card.vue'
+import Portfolio from '~/components/Dashboard/Portfolio.vue'
+import TotalReturn from '~/components/Dashboard/TotalReturn.vue'
+import AvgReturn from '~/components/Dashboard/AvgReturn.vue'
+import ProfitFactor from '~/components/Dashboard/ProfitFactor.vue'
+import Widget from '../components/Widget/index.vue'
 
 export default {
   name: 'IndexPage',
   components: {
     Card,
-    // HoverableItems,
     Portfolio,
     TotalReturn,
     AvgReturn,
     ProfitFactor,
-    // DatePicker1,
-    DateInput,
-    Chart,
-  },
+    Widget
+},
   data() {
     return { date: new Date('01-01-2000'), test1: new Date('') }
   },
   methods: {
     closePicker() {
-      setTimeout(() => (this.showPicker = false), 500)
+      // setTimeout(() => (this.showPicker = false), 500)
     },
   },
 }

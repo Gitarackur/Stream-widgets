@@ -70,25 +70,13 @@ export default {
           custom({ series, seriesIndex, dataPointIndex, w }) {
             const data =
               w.globals.initialSeries[seriesIndex].data[dataPointIndex]
-
+            console.log('series', series[0][dataPointIndex], seriesIndex, dataPointIndex)
             return (
-              '<ul>' +
-              '<li><b>Price</b>: ' +
-              data.x +
-              '</li>' +
-              '<li><b>Number</b>: ' +
-              data.y +
-              '</li>' +
-              "<li><b>Product</b>: '" +
-              data.product +
-              "'</li>" +
-              "<li><b>Info</b>: '" +
-              data.info +
-              "'</li>" +
-              "<li><b>Site</b>: '" +
-              data.site +
-              "'</li>" +
-              '</ul>'
+              `<div style="font-size: 14px; line-height: 20px; color: #65C49D; background-color: #262627; border: none; box-shadow: none; outline: none; padding: 10px;"
+                <p>
+                  ${Number(series[0][dataPointIndex])}
+                </p>
+              </div>`
             )
           },
         },

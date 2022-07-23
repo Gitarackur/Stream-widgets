@@ -5,7 +5,6 @@
     :class="[showPicker && 'show']"
     @click="showPicker = true"
   >
-    <!-- @blur="closePicker" -->
     <input
       :value="value"
       class="px-5 py-1.5 bg262627 box-border w-full inline-block"
@@ -13,13 +12,13 @@
       @input="onInput"
     />
     <div class="calendar">
-      <DatePicker1 v-model="mdate" />
+      <DatePicker1 v-model="mdate" @selected="onSelected" />
     </div>
   </div>
 </template>
 
 <script>
-import DatePicker1 from '../DatePicker.vue'
+import DatePicker1 from '~/components/Widget/Input/DatePicker.vue'
 
 function isValidDate(dateObject) {
   return new Date(dateObject).toString() !== 'Invalid Date'
@@ -70,6 +69,10 @@ export default {
   methods: {
     closePicker() {
       this.showPicker = false
+    },
+    onSelected() {
+      this.$nextTick(() => setTimeout(() => this.showPicker = false, 100))
+      this.$emit('selected', this.mdate)
     },
     onInput(e) {
       this.$emit('input', e.target.value)
