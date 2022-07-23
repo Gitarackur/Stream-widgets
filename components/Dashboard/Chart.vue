@@ -1,60 +1,15 @@
 <template>
-  <h1>charts</h1>
-  <!-- <client-only>
-    <div>
-      <VueApexCharts
-        width="700"
-        type="line"
-        :options="chartOptions"
-        :series="series"
-      ></VueApexCharts>
-    </div>
-  </client-only> -->
+  <div>
+    <h1>charts</h1>
+  </div>
 </template>
 
 <script>
-// import VueApexCharts from 'vue-apexcharts'
 export default {
   name: 'VChart',
-  components: {
-    // VueApexCharts,
-  },
+  components: {},
   data() {
-    return {
-      chartOptions: {
-        chart: {
-          height: 350,
-          type: 'line',
-          stacked: false,
-        },
-        stroke: {
-          curve: 'straight',
-        },
-        xaxis: {
-          categories: [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-          ],
-        },
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      colors: ['#FF1654', '#247BA0'],
-      series: [
-        {
-          name: 'series-1',
-          data: [30, 40, 35, 50, 49, 60, 70, 91],
-        },
-      ],
-    }
+    return {}
   },
 }
 </script>

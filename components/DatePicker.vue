@@ -412,7 +412,7 @@ export default {
 }
 
 .active__yy {
-  background-color: rgb(39, 188, 226);
+  background: #65c49d;
   color: white;
 }
 </style>

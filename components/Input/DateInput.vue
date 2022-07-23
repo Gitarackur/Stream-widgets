@@ -71,7 +71,7 @@ export default {
   padding: 5px;
   position: absolute;
   z-index: 1;
-  bottom: 140%;
+  bottom: 100%;
   left: 50%;
   margin-left: -100px;
   opacity: 0;
