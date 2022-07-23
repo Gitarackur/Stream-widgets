@@ -1,17 +1,19 @@
 <template>
   <div
-    class="dateInput text-white"
+    ref="picker"
+    class="dateInput text-white w-full"
     :class="[showPicker && 'show']"
     @click="showPicker = true"
   >
     <!-- @blur="closePicker" -->
     <input
-      v-model="vdate"
-      class="px-5 py-1.5 bg262627 inline-block"
+      :value="value"
+      class="px-5 py-1.5 bg262627 box-border w-full inline-block"
       type="text"
+      @input="onInput"
     />
     <div class="calendar">
-      <DatePicker1 v-model="vdate" />
+      <DatePicker1 v-model="mdate" />
     </div>
   </div>
 </template>
@@ -28,26 +30,57 @@ export default {
   components: {
     DatePicker1,
   },
+  props: ['value'],
   data() {
     return {
-      // date: new Date('01-01-2000'),
-      date: new Date(),
       showPicker: false,
     }
   },
   computed: {
-    vdate: {
+    mdate: {
       set(v) {
-        this.date = isValidDate(v) && new Date(v)
+        this.$emit('input', v.toString())
+        console.log('called.....', this.value.toString())
       },
       get() {
-        return this.date
+        let actualDate = this.value
+        if (!isValidDate(actualDate)) {
+          actualDate = new Date()
+        }
+        return actualDate
       },
     },
   },
+  watch: {
+    showPicker() {
+      if (this.showPicker) {
+        this.$refs.picker.focus()
+      }
+    },
+  },
+  created() {
+    if (process.browser) {
+      window.addEventListener('click', (e) => {
+        if (!this.$el.contains(e.target)) {
+          this.showPicker = false
+        }
+      })
+    }
+  },
   methods: {
     closePicker() {
-      setTimeout(() => (this.showPicker = false), 500)
+      this.showPicker = false
+    },
+    onInput(e) {
+      this.$emit('input', e.target.value)
+    },
+    displayPicker() {
+      console.log('calling picker.....')
+      this.showPicker = true
+    },
+    openPicker() {
+      this.$refs.picker.focus()
+      this.displayPicker()
     },
   },
 }

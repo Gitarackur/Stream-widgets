@@ -5,8 +5,11 @@ module.exports = {
     node: true,
     es6: true,
   },
+  globals: {
+    window: true,
+  },
   extends: [
-    '@nuxtjs',
+    // '@nuxtjs',
     'plugin:prettier/recommended',
     'plugin:nuxt/recommended',
   ],

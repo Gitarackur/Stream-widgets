@@ -95,15 +95,11 @@
                 :key="idx"
                 :class="[
                   selectedDD === n && 'active__dd',
-                  today.getDate() === n &&
-                    today.getFullYear() === selectedYY &&
-                    today.getMonth() === selectedMM &&
-                    'current__dd',
                   'cursor-pointer flex items-center rounded-sm justify-center aspect-square p-2',
                 ]"
                 @click="changeDD(n)"
               >
-                {{ n || '' }}
+                {{ n || '&nbsp;' }}
               </div>
             </div>
           </div>
@@ -112,7 +108,7 @@
         <div v-show="!showCalender" class="" data-name="months-calender">
           <div class="grid grid-cols-3">
             <div
-              v-for="(yy, idx) in range(selectedYY, selectedYY + 11)"
+              v-for="(yy, idx) in range(selectedYY - 7, selectedYY + 4)"
               :key="idx"
               :class="[
                 selectedYY === yy && 'active__yy',
@@ -134,12 +130,15 @@
             data-id="time-input"
             class="border-b inline-block relative h-max overflow-hidden"
           >
-            <input
-              v-model="selectedTime"
-              type="text"
-              placeholder="00:00"
-              class="block pl-8 bg-transparent ml-1 w-full appearance-none border-none"
-            />
+            <div class="px-1">
+              <input
+                v-model="selectedTime"
+                type="text"
+                placeholder="00:00"
+                class="block pl-8 bg-transparent w-full appearance-none border-none box-border"
+                @click.prevent=""
+              />
+            </div>
             <i
               class="absolute top-1/2 left-0 flex items-center transform -translate-y-1/2 mx-1 h-full p-2"
             >
@@ -164,26 +163,24 @@
           <!-- AM/PM Picker Component-->
           <div class="p-1 w-full">
             <ul
-              :current-tabindex="currentTab"
+              :current-tabindex="timeMeridian"
               class="m-0 p-2 flex flex-row w-full bgblack"
             >
               <li
-                tabindex="0"
                 :class="[
-                  currentTab === 0 && 'active',
+                  timeMeridian === 0 && 'active',
                   'py-2 w-1/2 rounded cursor-pointer',
                 ]"
-                @click="currentTab = 0"
+                @click="timeMeridian = 0"
               >
                 AM
               </li>
               <li
-                tabindex="1"
                 :class="[
-                  currentTab === 1 && 'active',
+                  timeMeridian === 1 && 'active',
                   'py-2 w-1/2 rounded cursor-pointer',
                 ]"
-                @click="currentTab = 1"
+                @click="timeMeridian = 1"
               >
                 PM
               </li>
@@ -195,6 +192,16 @@
   </div>
 </template>
 <script>
+
+function to12hrs(dt) {
+  var hours = dt.getHours() ; // gives the value in 24 hours format
+  var AmOrPm = hours >= 12 ? 1 : 0;
+  hours = String(((hours % 12) || 12)).padStart(2, '0');
+  var minutes = String(dt.getMinutes()).padStart(2, '0') ;
+  var finalTime = "Time  - " + hours + ":" + minutes + " " + AmOrPm; 
+  console.log(finalTime)
+  return [hours, minutes, AmOrPm]
+}
 const MONTH_MAP = Object.freeze([
   'January',
   'February',
@@ -218,7 +225,7 @@ export default {
     selectedMin: '',
     selectedHrs: '',
     showCalender: true,
-    currentTab: 0,
+    timeMeridian: 0,
     selectedDate: '',
     selectedDD: undefined,
     selectedMM: undefined,
@@ -252,6 +259,10 @@ export default {
       if (first7.reduce((s, n) => s + n, 0) !== 0) {
         datesViewArray.unshift(...first7)
       }
+      const a = 42 - datesViewArray.length
+      const x = new Array(a).fill(0)
+
+      datesViewArray.push(...x)
 
       return datesViewArray
     },
@@ -275,15 +286,23 @@ export default {
         this.$emit('update:modelValue', this.selectedDate)
       }
     },
+
+    selectedTime() {
+      this.selectedDate.setUTCHours(this.timeMeridian ? this.selectedHrs : this.selectedHrs + 12);
+      this.selectedDate.setMinutes(this.selectedMin);
+      this.$emit('input', this.selectedDate);
+    }
   },
   mounted() {
     // TODO get selected date from v-model
     const date = new Date(this.value)
+    if (date) [this.selectedHrs, this.selectedMin, this.timeMeridian] = to12hrs(date)
+    // this.selectedMin = date.getMinutes()
+    // this.selectedHrs = date.getHours()
     this.setCurrentDate(date)
 
     // TIME
-    this.selectedMin = date.getMinutes()
-    this.selectedHrs = date.getHours()
+    
   },
   methods: {
     setCurrentDate(date) {
@@ -295,7 +314,7 @@ export default {
         this.getFirstDayOfMonth(date.getFullYear(), date.getMonth()) - 1
       this.totalDays = this.getDaysInMonth(date.getFullYear(), date.getMonth())
       this.$emit('input', this.selectedDate)
-      this.$emit('update:modelValue', this.selectedDate)
+      // this.$emit('update:modelValue', this.selectedDate)
     },
     range(start, stop, skip = 1) {
       // console.log(start, stop)
@@ -365,7 +384,9 @@ export default {
 }
 </script>
 <style scoped>
-/* { border: 1px solid red; }
+/* {
+  border: 1px solid red;
+}
 /*
  use css variables in the future to pass the active color
 */

@@ -46,14 +46,14 @@
 
               <div class="flex justify-between items-center">
                 <div
-                  class="w-6/12 flex justify-between items-center bg-sidebar p-1 w-full relative"
+                  class="flex flex-row gap-2 justify-between items-center bg-sidebar p-1 w-full relative"
                 >
-                  <div class="md:w-4/12 relative">
-                    <DateInput />
+                  <div class="md:w-full relative">
+                    <DateInput v-model="test1" class="w-full" />
                   </div>
-
-                  <div class="md:w-4/12 relative">
-                    <DateInput />
+                  <div>-</div>
+                  <div class="md:w-full relative">
+                    <DateInput v-model="date" />
                   </div>
                 </div>
 
@@ -90,10 +90,6 @@ import ProfitFactor from '../components/Dashboard/ProfitFactor.vue'
 import DateInput from '../components/Input/DateInput.vue'
 import Chart from '../components/Dashboard/Chart.vue'
 
-function isValidDate(dateObject) {
-  return new Date(dateObject).toString() !== 'Invalid Date'
-}
-
 export default {
   name: 'IndexPage',
   components: {
@@ -108,17 +104,7 @@ export default {
     Chart,
   },
   data() {
-    return { date: new Date('01-01-2000'), showPicker: false }
-  },
-  computed: {
-    vdate: {
-      set(v) {
-        this.date = isValidDate(v) && new Date(v)
-      },
-      get() {
-        return this.date
-      },
-    },
+    return { date: new Date('01-01-2000'), test1: new Date('') }
   },
   methods: {
     closePicker() {

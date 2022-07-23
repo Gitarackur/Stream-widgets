@@ -17,7 +17,7 @@ export default {
     return {
       chartOptions: {
         chart: {
-          id: 'tradescream graph',
+          id: 'tradestream graph',
           toolbar: {
             show: false,
             offsetX: 0,
@@ -41,6 +41,55 @@ export default {
           },
           axisTicks: {
             show: false,
+          },
+          labels: {
+            show: false,
+            style: {
+              colors: '#fff',
+              fontSize: '8px',
+              cssClass: 'apexcharts-xaxis-label',
+            },
+          },
+        },
+        yaxis: {
+          labels: {
+            show: false,
+            minWidth: 0,
+            maxWidth: 160,
+            style: {
+              color: '#fff',
+              fontSize: '8px',
+              cssClass: 'apexcharts-yaxis-label',
+            },
+            offsetX: 0,
+            offsetY: 0,
+            rotate: 0,
+          },
+        },
+        tooltip: {
+          custom({ series, seriesIndex, dataPointIndex, w }) {
+            const data =
+              w.globals.initialSeries[seriesIndex].data[dataPointIndex]
+
+            return (
+              '<ul>' +
+              '<li><b>Price</b>: ' +
+              data.x +
+              '</li>' +
+              '<li><b>Number</b>: ' +
+              data.y +
+              '</li>' +
+              "<li><b>Product</b>: '" +
+              data.product +
+              "'</li>" +
+              "<li><b>Info</b>: '" +
+              data.info +
+              "'</li>" +
+              "<li><b>Site</b>: '" +
+              data.site +
+              "'</li>" +
+              '</ul>'
+            )
           },
         },
         fill: {
@@ -102,6 +151,7 @@ export default {
           },
         },
         markers: {
+          show: true,
           colors: ['#65C49D', '#65C49D', '#65C49D'],
         },
         dataLabels: {
