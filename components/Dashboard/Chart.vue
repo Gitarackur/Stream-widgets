@@ -49,11 +49,18 @@ export default {
             opacityTo: 0.2513,
             stops: [100, 96.18, 25.13, 0],
           },
+          pattern: {
+            style: 'verticalLines',
+            width: 6,
+            height: 6,
+            strokeWidth: 2,
+            color: 'red',
+          },
         },
         stroke: {
           show: true,
           curve: 'straight',
-          // lineCap: 'butt',
+          lineCap: 'butt',
           colors: ['#447E6B', '#65C49D'],
           width: 3,
           dashArray: 0,
@@ -87,6 +94,9 @@ export default {
             bottom: 0,
             left: 0,
           },
+        },
+        markers: {
+          colors: ['#65C49D', '#65C49D', '#65C49D'],
         },
         dataLabels: {
           enabled: false,
