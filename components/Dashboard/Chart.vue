@@ -17,7 +17,7 @@ export default {
     return {
       chartOptions: {
         chart: {
-          id: 'vuechart-example',
+          id: 'tradescream graph',
           toolbar: {
             show: false,
             offsetX: 0,
@@ -36,6 +36,12 @@ export default {
         },
         xaxis: {
           categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+          axisBorder: {
+            show: false,
+          },
+          axisTicks: {
+            show: false,
+          },
         },
         fill: {
           colors: [
@@ -106,6 +112,7 @@ export default {
         {
           name: 'series-1',
           data: [30, 40, 35, 50, 49, 60, 70, 91],
+          colors: ['#65C49D', '#65C49D'],
         },
       ],
     }
