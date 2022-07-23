@@ -58,6 +58,36 @@ export default {
           width: 3,
           dashArray: 0,
         },
+        grid: {
+          show: true,
+          borderColor: '#323233',
+          strokeDashArray: 5,
+          position: 'back',
+          xaxis: {
+            lines: {
+              show: true,
+            },
+          },
+          yaxis: {
+            lines: {
+              show: true,
+            },
+          },
+          row: {
+            colors: undefined,
+            opacity: 0.5,
+          },
+          column: {
+            colors: undefined,
+            opacity: 0.5,
+          },
+          padding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+          },
+        },
         dataLabels: {
           enabled: false,
         },
