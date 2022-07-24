@@ -88,7 +88,8 @@ export default {
         },
         yaxis: {
           forceNiceScale: false,
-          max: 100,
+          min: 30,
+          max: 70,
           labels: {
             formatter: (value) => value.toFixed(0) +'%',
             style: {
