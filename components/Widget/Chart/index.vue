@@ -87,15 +87,18 @@ export default {
           },
         },
         yaxis: {
+          forceNiceScale: false,
+          max: 100,
           labels: {
-            show: true,
-            minWidth: 0,
-            maxWidth: 160,
+            formatter: (value) => value.toFixed(0) +'%',
             style: {
               color: '#676768',
               fontSize: '14px',
               cssClass: 'apexcharts-yaxis-label',
             },
+            minWidth: 0,
+            maxWidth: 160,
+            show: true,
             offsetX: 0,
             offsetY: 0,
             rotate: 0,

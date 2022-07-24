@@ -74,7 +74,7 @@ export default {
 },
   data() {
     return { 
-      portfolioValue: ["40%", "52%", "50%", "52%", "40%", "57%", "54%", "56%"],
+      portfolioValue: [40, 52, 50, 52, 40, 57, 54, 56],
       timeStamps: ["January","February","March","April","May","June","July","August"],
     }
   },
