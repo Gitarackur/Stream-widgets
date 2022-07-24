@@ -90,6 +90,9 @@ export default {
           forceNiceScale: false,
           min: 30,
           max: 70,
+          tickAmount: 4,
+          type:'numeric',
+          // tickAmount: 'dataPoints',
           labels: {
             formatter: (value) => value.toFixed(0) +'%',
             style: {
