@@ -2,8 +2,6 @@
   <div class="w-max calendar">
     <div class="flex flex-row">
       <div class="w-7/12 p-4">
-
-        
         <!-- Head Controls Component -->
         <div class="flex flex-row justify-between mb-5" data-name="head">
           <div
@@ -77,8 +75,6 @@
             </i>
           </div>
         </div>
-
-
 
         <!-- Calender Component -->
         <div v-show="showCalender" class="" data-name="calender">
@@ -198,14 +194,13 @@
   </div>
 </template>
 <script>
-
 function to12hrs(dt) {
-  let hours = dt.getHours(); // gives the value in 24 hours format
-  const AmOrPm = hours >= 12 ? 1 : 0;
-  const timeOffset =  dt.getTimezoneOffset();
-  hours = String(((hours % 12) || 12) + (0)).padStart(2, '0');
-  const minutes = String(dt.getMinutes()).padStart(2, '0') ;
-  
+  let hours = dt.getHours() // gives the value in 24 hours format
+  const AmOrPm = hours >= 12 ? 1 : 0
+  const timeOffset = dt.getTimezoneOffset()
+  hours = String((hours % 12 || 12) + 0).padStart(2, '0')
+  const minutes = String(dt.getMinutes()).padStart(2, '0')
+
   return [hours, minutes, AmOrPm, timeOffset]
 }
 const MONTH_MAP = Object.freeze([
@@ -241,7 +236,7 @@ export default {
     today: new Date(),
     firstWeekday: 0,
     MONTH_MAP,
-    emitSelected: false
+    emitSelected: false,
   }),
   computed: {
     days() {
@@ -296,32 +291,40 @@ export default {
     },
 
     selectedTime() {
-      const x = +(!this.timeMeridian ? this.selectedHrs : Number(this.selectedHrs) + 12) + Math.floor(this.timeZoneOffset/60);
-      console.log(x, this.timeMeridian);
-      this.selectedDate.setUTCHours(x);
-      this.selectedDate.setMinutes(this.selectedMin);
+      const x =
+        +(!this.timeMeridian
+          ? this.selectedHrs
+          : Number(this.selectedHrs) + 12) +
+        Math.floor(this.timeZoneOffset / 60)
+      console.log(x, this.timeMeridian)
+      this.selectedDate.setUTCHours(x)
+      this.selectedDate.setMinutes(this.selectedMin)
       console.log('tie')
-      this.$emit('input', this.selectedDate);
+      this.$emit('input', this.selectedDate)
       // this.
-    }
+    },
   },
   mounted() {
     // TODO get selected date from v-model
     const date = new Date(this.value)
     if (date) {
-      [this.selectedHrs, this.selectedMin, this.timeMeridian, this.timeZoneOffset] = to12hrs(date);
+      ;[
+        this.selectedHrs,
+        this.selectedMin,
+        this.timeMeridian,
+        this.timeZoneOffset,
+      ] = to12hrs(date)
     }
     // this.selectedMin = date.getMinutes()
     // this.selectedHrs = date.getHours()
     this.setCurrentDate(date)
 
     // TIME
-    
   },
   methods: {
     handleEmitting() {
       this.$emit('input', this.selectedDate)
-      if(this.emitSelected){
+      if (this.emitSelected) {
         this.$emit('selected', this.selectedDate)
       }
     },
@@ -333,7 +336,7 @@ export default {
       this.firstWeekday =
         this.getFirstDayOfMonth(date.getFullYear(), date.getMonth()) - 1
       this.totalDays = this.getDaysInMonth(date.getFullYear(), date.getMonth())
-      this.handleEmitting();
+      this.handleEmitting()
     },
     range(start, stop, skip = 1) {
       const arrayLength = Math.floor(stop / skip) - start
@@ -388,7 +391,7 @@ export default {
         }
       }
 
-      this.emitSelected = false;
+      this.emitSelected = false
       this.setCurrentDate($date)
     },
     changeDD(dd) {

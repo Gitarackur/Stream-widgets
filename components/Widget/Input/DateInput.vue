@@ -6,8 +6,8 @@
     @click="showPicker = true"
   >
     <input
-      :value="value"
-      class="px-5 py-1.5 bg262627 box-border w-full inline-block relative"
+      :value="(new Date(value).toLocaleString('en', { timeZoneName: 'short', }).split('GMT')[0])"
+      class="px-5 py-1.5 bg262627 c-C8C9C8 box-border w-full inline-block relative"
       type="text"
       @input="onInput"
     />
@@ -70,7 +70,7 @@ export default {
       this.showPicker = false
     },
     onSelected() {
-      this.$nextTick(() => setTimeout(() => this.showPicker = false, 100))
+      this.$nextTick(() => setTimeout(() => (this.showPicker = false), 100))
       this.$emit('selected', this.mdate)
     },
     onInput(e) {
@@ -89,6 +89,18 @@ export default {
 </script>
 
 <style>
+.c-FCFEFD {
+  color: #FCFEFD;
+}
+
+.c-676768 {
+  color: #676768;
+}
+
+.c-C8C9C8 {
+  color: #C8C9C8;
+}
+
 .dateInput {
   position: relative;
   display: inline-block;
@@ -102,7 +114,7 @@ export default {
   text-align: center;
   border-radius: 6px;
   padding: 5px;
- 
+
   bottom: 140%;
   left: 50%;
   margin-left: -100px;

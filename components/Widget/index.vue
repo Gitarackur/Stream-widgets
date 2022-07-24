@@ -1,25 +1,28 @@
 <template>
   <div class="">
-    <Chart :time-stamps="timeStamps" :portfolio-value="portfolioValue"/>
+    <Chart :time-stamps="timeStamps" :portfolio-value="portfolioValue" />
 
-    <div class="md:flex md:justify-between md:items-center md:-mx-2">
-      <div
-        class="flex flex-row gap-2 justify-between items-center bg-sidebar p-1 md:w-8/12 md:px-2"
-      >
-        <div class="md:w-full">
-          <DateInput v-model="test1" class="w-full" @selected="closePicker" />
-        </div>
+    <div class="md:flex md:justify-between md:items-center md:-mx-4">
+      <div class="md:w-8/12 md:px-4">
+        <div
+          class="flex flex-row gap-2 justify-between items-center bg-sidebar p-1"
+        >
+          <div class="md:w-full">
+            <DateInput v-model="test1" class="w-full" @selected="closePicker" />
+          </div>
 
-        <div>-</div>
+          <div>-</div>
 
-        <div class="md:w-full">
-          <DateInput v-model="date" class="w-full" @selected="closePicker"/>
+          <div class="md:w-full">
+            <DateInput v-model="date" class="w-full" @selected="closePicker" />
+          </div>
         </div>
       </div>
+      
 
-      <div class="md:w-5/12 md:px-2">
-        <p class="text-white mt-10 md:mt-0">
-          Your did 8% less trades compared to 80 trades past month
+      <div class="md:w-5/12 md:px-4">
+        <p class="c-676768 mt-10 md:mt-0">
+          Your did <span class="text-white">8%</span> less trades compared to <span class="text-white">80</span> trades past month
         </p>
       </div>
     </div>
@@ -34,16 +37,16 @@ export default {
   name: 'Widget',
   components: {
     DateInput,
-    Chart
+    Chart,
   },
   props: {
-    timeStamps : {
+    timeStamps: {
       type: Array,
-      default:()=> [],
+      default: () => [],
     },
-    portfolioValue : {
+    portfolioValue: {
       type: Array,
-      default:()=> [],
+      default: () => [],
     },
   },
   data() {

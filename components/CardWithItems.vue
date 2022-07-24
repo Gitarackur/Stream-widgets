@@ -1,7 +1,7 @@
 <template>
   <Card class="h-full w-full">
-    <div class="flex justify-between items-center">
-      <h6 class="">Profit Factor</h6>
+    <div class="flex justify-between items-center md:mb-8">
+      <h6 class="c-FCFEFD">Portfolio Drawn</h6>
       <div class="flex -mx-1">
         <HoverableItems class="px-1">
           <svg
@@ -53,30 +53,20 @@
     </div>
 
     <div class="">
-      <div class="flex items-center mb-2 -mx-1">
-        <div class="px-1">
-          <h1 class="c-white">2.2</h1>
-        </div>
-
-        <div class="px-1">
-          <span class="c-4C9077"> 24% </span>
-        </div>
-      </div>
-
-      <div class="mt-2 mb-0">
-        <p>compared to <span>PROFIT</span> prelimary</p>
-      </div>
+      <slot></slot>
     </div>
   </Card>
 </template>
 
 <script>
-import Card from '../Card.vue'
-import HoverableItems from '../HoverableItems.vue'
+import Card from '~/components/Card.vue'
+import HoverableItems from '~/components/HoverableItems.vue'
 export default {
-  name: 'ProfitFactorComponent',
+  name: 'CardWithItemsComponent',
   components: { Card, HoverableItems },
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

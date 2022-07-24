@@ -22,6 +22,7 @@ export default {
 .tooltip {
   position: relative;
   display: inline-block;
+  cursor: pointer;
 }
 
 .tooltip .tooltiptext {

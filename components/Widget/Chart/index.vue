@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>charts</h1>
     <div class="">
       <ClientOnly>
         <ApexChart type="area" :options="chartOptions" :series="series" />
@@ -10,31 +9,36 @@
 </template>
 
 <script>
-const convertArrayTimeStampToDate = (timestampArray)=>{
-  return timestampArray && timestampArray.map((curr)=> {
-    const newArr = []
-    curr = new Date(curr).toLocaleDateString();
-    newArr.push(curr)
-    return newArr;
-  })
+const convertArrayTimeStampToDate = (timestampArray) => {
+  return (
+    timestampArray &&
+    timestampArray.map((curr) => {
+      const newArr = []
+      curr = new Date(curr).toLocaleDateString()
+      newArr.push(curr)
+      return newArr
+    })
+  )
 }
 
 export default {
   name: 'VChart',
   props: {
-    timeStamps : {
+    timeStamps: {
       type: Array,
-      default:()=> [],
+      default: () => [],
     },
-    portfolioValue : {
+    portfolioValue: {
       type: Array,
-      default:()=> [],
+      default: () => [],
     },
   },
-  mounted(){
-    if(process.browser){
-      console.log(this.timeStamps, this.portfolioValue);
-      this.chartOptions.xaxis.categories = convertArrayTimeStampToDate(this.timeStamps)
+  mounted() {
+    if (process.browser) {
+      console.log(this.timeStamps, this.portfolioValue)
+      this.chartOptions.xaxis.categories = convertArrayTimeStampToDate(
+        this.timeStamps
+      )
       this.series[0].data = this.portfolioValue
     }
   },
@@ -78,7 +82,7 @@ export default {
             show: true,
             style: {
               colors: '#676768',
-              fontSize: '8px',
+              fontSize: '14px',
               cssClass: 'apexcharts-xaxis-label',
             },
           },
@@ -90,7 +94,7 @@ export default {
             maxWidth: 160,
             style: {
               color: '#676768',
-              fontSize: '8px',
+              fontSize: '14px',
               cssClass: 'apexcharts-yaxis-label',
             },
             offsetX: 0,
@@ -102,14 +106,17 @@ export default {
           custom({ series, seriesIndex, dataPointIndex, w }) {
             const data =
               w.globals.initialSeries[seriesIndex].data[dataPointIndex]
-            console.log('series', series[0][dataPointIndex], seriesIndex, dataPointIndex)
-            return (
-              `<div style="font-size: 14px; line-height: 20px; color: #65C49D; background-color: #262627; border: none; box-shadow: none; outline: none; padding: 10px;"
+            console.log(
+              'series',
+              series[0][dataPointIndex],
+              seriesIndex,
+              dataPointIndex
+            )
+            return `<div style="font-size: 14px; line-height: 20px; color: #65C49D; background-color: #262627; border: none; box-shadow: none; outline: none; padding: 10px;"
                 <p>
                   ${Number(series[0][dataPointIndex])}
                 </p>
               </div>`
-            )
           },
         },
         fill: {

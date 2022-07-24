@@ -34,23 +34,18 @@
             <ProfitFactor />
           </div>
 
-          <div class="md:w-3/12 lg:p-2">
+          <div class="md:w-10/12 lg:p-2">
+            <CardWithItems>
+              <Widget :time-stamps="timestamps" :portfolio-value="portfolioValue"/>
+            </CardWithItems>
+          </div>
+
+          <div class="md:w-2/12 lg:p-2">
             <Card class="h-full w-full">
               <h1></h1>
             </Card>
           </div>
 
-          <div class="md:w-6/12 lg:p-2">
-            <Card class="h-full w-full">
-              <Widget :time-stamps="timestamps" :portfolio-value="portfolioValue"/>
-            </Card>
-          </div>
-
-          <div class="md:w-3/12 lg:p-2">
-            <Card class="h-full w-full">
-              <!-- <h1></h1> -->
-            </Card>
-          </div>
         </div>
       </div>
     </div>
@@ -64,6 +59,7 @@ import TotalReturn from '~/components/Dashboard/TotalReturn.vue'
 import AvgReturn from '~/components/Dashboard/AvgReturn.vue'
 import ProfitFactor from '~/components/Dashboard/ProfitFactor.vue'
 import Widget from '~/components/Widget/index.vue'
+import CardWithItems from '~/components/CardWithItems.vue'
 
 export default {
   name: 'IndexPage',
@@ -73,7 +69,8 @@ export default {
     TotalReturn,
     AvgReturn,
     ProfitFactor,
-    Widget
+    Widget,
+    CardWithItems
 },
   data() {
     return { 
