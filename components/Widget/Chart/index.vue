@@ -36,9 +36,7 @@ export default {
   mounted() {
     if (process.browser) {
       console.log(this.timeStamps, this.portfolioValue)
-      this.chartOptions.xaxis.categories = convertArrayTimeStampToDate(
-        this.timeStamps
-      )
+      this.chartOptions.xaxis.categories = this.timeStamps;
       this.series[0].data = this.portfolioValue
     }
   },
@@ -71,6 +69,7 @@ export default {
           },
         },
         xaxis: {
+          type: 'category',
           categories: [],
           axisBorder: {
             show: false,
@@ -114,7 +113,7 @@ export default {
             )
             return `<div style="font-size: 14px; line-height: 20px; color: #65C49D; background-color: #262627; border: none; box-shadow: none; outline: none; padding: 10px;"
                 <p>
-                  ${Number(series[0][dataPointIndex])}
+                  ${Number(series[0][dataPointIndex]).toFixed(0) + '%'}
                 </p>
               </div>`
           },

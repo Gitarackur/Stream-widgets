@@ -36,7 +36,7 @@
 
           <div class="md:w-10/12 lg:p-2">
             <CardWithItems>
-              <Widget :time-stamps="timestamps" :portfolio-value="portfolioValue"/>
+              <Widget :time-stamps="timeStamps" :portfolio-value="portfolioValue"/>
             </CardWithItems>
           </div>
 
@@ -74,8 +74,8 @@ export default {
 },
   data() {
     return { 
-      timestamps: [1568666854141, 1568595225048, 1568594645595, 1568594646000, 1600000000000],
-      portfolioValue: [100, 150, 200, 250, 300],
+      portfolioValue: ["40%", "52%", "50%", "52%", "40%", "57%", "54%", "56%"],
+      timeStamps: ["January","February","March","April","May","June","July","August"],
     }
   },
   methods: {},
